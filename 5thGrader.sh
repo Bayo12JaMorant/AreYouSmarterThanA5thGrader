@@ -4,8 +4,30 @@ clear
 
 
 for_Math(){
-	:
-}
+
+	echo "Time for the 1st Math Question!"
+	sleep 2
+	echo ""
+	echo -e "What is 6 * 8 ?
+		a) 42 b) 48 c) 56 d) 64
+	"
+	sleep 2
+	read -p "Put your answer here ( a - d ): " answer
+	if [[ $answer == "b" || $answer == "b" ]]; then
+		echo ""
+		echo "Congratulations! you got it right!"
+	elif [[ $answer == "a" || $answer == "A" || $answer == "c" || $answer == "C" || $answer == "d" || $answer == "D" ]]; then
+		echo ""
+		echo "Whelp. The right answer was b) 48" 
+	fi
+
+	echo "2nd Question! Lets see if you get it on the first try!"
+	sleep 2
+	echo "" 
+	echo -e "
+	"	
+}  
+
 
 for_Science(){
 	:
@@ -58,6 +80,7 @@ for_Menu(){
 	 5) for_Sports ;;
 	 6) for_Trivia ;;
 	 7) for_Exit ;;
+	 *) echo "Please pick between 1 and 6" ;;
     esac
 
     echo ""
