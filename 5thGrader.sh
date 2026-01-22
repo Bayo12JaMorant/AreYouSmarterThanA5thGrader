@@ -21,11 +21,15 @@ for_Math(){
 		echo "Whelp. The right answer was b) 48" 
 	fi
 
+
 	echo "2nd Question! Lets see if you get it on the first try!"
 	sleep 2
 	echo "" 
-	echo -e "
+	echo -e " What is 1/2 + 1/4 ?
+		a) 1/2 b) 3/4 c) 1 d) 1/4 
 	"	
+	sleep 2
+	read -p "Put your answer here ( a - d ): " answer
 }  
 
 
