@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-score=0
+
 
 #objectGenerator=( "Puzzle" "Saw" "Surfboard" "Holly" "AvocadoTree" "Scanner" "Typewriter" "Nightstand" "Mint" "TapeMeasure" )
 
@@ -12,16 +12,30 @@ triviaQuestions=( "What color do you get by mixing red and blue?" "How many days
   
 for_Math(){
    mathQuestions=( " What is 6 * 8" "What is 1/2 + 1/4" "How many sides on a pentagon?" "What is 90 divided by 9" "What is the value of 3*2" )
-   mathOptions=(" A) 42 B) 48 C) 56 D) 64"    "A) ½ B) ¾ C) 1 D) ¼"   "A) 4 B) 5 C) 6 D) 8"  "A) 9 B) 10 C) 11 D) 12"   "A) 6 B) 9 C) 12 D) 18" )
-   mathAnswers=("B" "B" "B" "B" "B")
+   mathMultipleChoice=(" A) 42 B) 64 C) 56 D) 48"    "A) ½ B) ¾ C) 1 D) ¼"   "A) 4 B) 3 C) 5 D) 8"  "A) 10 B) 9 C) 11 D) 12"   "A) 6 B) 9 C) 12 D) 18" )
+   mathAnswers=("D" "B" "C" "A" "B")
 
    mathQuestions=0
-   for q in "${mathQuestions[@]}"
+   for mQ in "${mathQuestions[@]}" do
+       echo "mQ"
+       echo "${mathMultipleChoice[mathQuestions]}"
+       read -p "What is the answer?: " answer
+       if [[ $answer == "${mathAnswers[i]}" ]]; then
+           echo " Good Job! you got it correct! "
+           sleep 2
+      else
+          "You got it wrong. Try the next question "
+          sleep 2
+       fi
+       ((mathQuestions++))
+  done  
 }
 
 for_Science(){
-   :
+   scienceQuestions=( "What planet is closest to the sun" "Which part of the plant absorbs water" "What gas do humans need to breathe" "What state of matter is ice" "Is a snake a mammal" )
+   scienceMultipleChoice=(
 }
+
 
 for_Geography(){
    :
@@ -39,20 +53,15 @@ for_Trivia(){
    :
 }
 
+for_Start(){
+  echo -e "
+ Welcome to: Are You Smarter Than a 5th Grader?
+    - - - - - - - - - -- - -- - -- - -- - - -- -        
+ Want to know how smart you really are? Lets find out! 
+"
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-menu(){
+for_Menu(){
    echo -e "
     Our Subjects are;
     1) Mathematics
@@ -64,7 +73,22 @@ menu(){
     7) Exit 
    "
    echo ""
+   read -p "What Subject would you like to be tested on? (1-6): " answer
 
-   
+	case $answer in
+	   1) for_Math ;;
+	   2) for_Science ;;
+	   3) for_Geography ;;
+	   4) for_History ;;
+	   5) for_Sports ;;
+	   6) for_Trivia ;;
+	   7) for_Exit ;;
+	   *) echo "Please pick between 1 and 6" ;;
+  esac
+
+  for_Menu 
 }
+
+for_Start
+for_Menu
 
