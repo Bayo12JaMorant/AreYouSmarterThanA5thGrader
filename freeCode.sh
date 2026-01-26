@@ -4,36 +4,56 @@ clear
 
 #objectGenerator=( "Puzzle" "Saw" "Surfboard" "Holly" "AvocadoTree" "Scanner" "Typewriter" "Nightstand" "Mint" "TapeMeasure" )
 
-scienceQuestions=( "What planet is closest to the sun" "Which part of the plant absorbs water" "What gas do humans need to breathe" "What state of matter is ice" "Is a snake a mammal" )
 geographyQuestions=( "Which continent is Egypt located in" "What is the largest ocean on Earth" "What country is south of Canada" "What is the capital of Japan" "Which direction does the Sun rise from" )
 historyQuestions=( "Who was the first President of the United States" "In what year did the U.S. declare independence" "" )
 sportsQuestions=( " How many players are on a soccer team on the feild?" "What sport uses a tall hoop? " " How many points is a touchdown worth?" "What sport is played at wimbeldon? " "In baseball, how many strikes make an out?" )
 triviaQuestions=( "What color do you get by mixing red and blue?" "How many days are in a leap year?" "Which animal is known as “man’s best friend”?" "What do bees make?" "How many letters are in the English alphabet?" )
   
 for_Math(){
-   mathQuestions=( " What is 6 * 8" "What is 1/2 + 1/4" "How many sides on a pentagon?" "What is 90 divided by 9" "What is the value of 3*2" )
-   mathMultipleChoice=(" A) 42 B) 64 C) 56 D) 48"    "A) ½ B) ¾ C) 1 D) ¼"   "A) 4 B) 3 C) 5 D) 8"  "A) 10 B) 9 C) 11 D) 12"   "A) 6 B) 9 C) 12 D) 18" )
+   mathQuestions=( 
+      "What is 6 * 8" 
+      "What is 1/2 + 1/4" 
+      "How many sides on a pentagon?" 
+      "What is 90 divided by 9" 
+      "What is the value of 3*2" 
+   )
+   mathMultipleChoice=(
+      "A) 42 B) 64 C) 56 D) 48"
+      "A) ½ B) ¾ C) 1 D) ¼" 
+      "A) 4 B) 3 C) 5 D) 8"  
+      "A) 10 B) 9 C) 11 D) 12" 
+      "A) 6 B) 9 C) 12 D) 18" 
+   )
    mathAnswers=("D" "B" "C" "A" "B")
 
-   mathQuestions=0
-   for mQ in "${mathQuestions[@]}" do
-       echo "mQ"
-       echo "${mathMultipleChoice[mathQuestions]}"
-       read -p "What is the answer?: " answer
-       if [[ $answer == "${mathAnswers[i]}" ]]; then
-           echo " Good Job! you got it correct! "
-           sleep 2
+   mathQuestion=0
+   for m in "${mathQuestions[@]}"; do
+      echo "$m"
+      echo "${mathMultipleChoice[mathQuestion]}"
+      read -p "What is the answer?: " math_answer
+      answer="${mathAnswers[mathQuestion]}"
+      if [[ $math_answer == $answer ]]; then
+         echo ""
+         echo " Good Job! you got it correct! "
+         sleep 2
       else
-          "You got it wrong. Try the next question "
-          sleep 2
-       fi
-       ((mathQuestions++))
+
+         echo "You got it wrong. Try the next question"
+         sleep 2
+      fi
+      ((mathQuestion++))
   done  
 }
 
 for_Science(){
    scienceQuestions=( "What planet is closest to the sun" "Which part of the plant absorbs water" "What gas do humans need to breathe" "What state of matter is ice" "Is a snake a mammal" )
    scienceMultipleChoice=(
+      "What planet is closest to the Sun?"
+      "Which part of the plant absorbs water?"
+      "What gas do humans need to breathe?"
+      "What state of matter is ice?"
+      "Which animal is a mammal?"
+   )
 }
 
 
