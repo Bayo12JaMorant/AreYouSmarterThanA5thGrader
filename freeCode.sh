@@ -46,14 +46,38 @@ for_Math(){
 }
 
 for_Science(){
-   scienceQuestions=( "What planet is closest to the sun" "Which part of the plant absorbs water" "What gas do humans need to breathe" "What state of matter is ice" "Is a snake a mammal" )
+   scienceQuestions=( 
+   	"What planet is closest to the sun"
+   	"Which part of the plant absorbs water"
+   	"What gas do humans need to breathe"
+   	"What state of matter is ice"
+   	"Which animal is a mammal"
+    )
    scienceMultipleChoice=(
-      "What planet is closest to the Sun?"
-      "Which part of the plant absorbs water?"
-      "What gas do humans need to breathe?"
-      "What state of matter is ice?"
-      "Which animal is a mammal?"
+      "A) Venus B) Earth C) Mercury D) Mars" 
+      "A) Leaves B) Stem C) Roots D) Flower"
+      "A) Air B) Oxygen C) Nitrogen D) Helium"
+      "A) Solid B) Liquid C) Gas D) Plasma"
+      "A) Frog B) Snake C) Dolphin D) Eagle"
    )
+   scienceAnswers=( "C" "B" "B" "A" "B" )
+   
+   scienceQuestion=0
+   for s in "${scienceQuestions[@]}"; do
+   	   echo "$m"
+	   echo "${scienceMultipleChoice[scienceQuestion]}"
+	   read -p "And you answer is?: " science_answer
+	   answer= "${scienceAnswers[scienceQuestion]}"
+	   if [[ $science_answer = $answer ]]; then
+	   		echo "Good Job punk! you got it correct!"
+			sleep 2
+	   else
+	   
+	   		echo  "Aw man. the correct answer was "${scienceAnswers[scienceQuestion]}". Try again next time"
+			sleep 2
+	   fi
+	   ((scienceQuestion++))
+	done
 }
 
 
