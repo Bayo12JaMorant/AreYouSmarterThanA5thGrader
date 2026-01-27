@@ -1,14 +1,32 @@
 #!/bin/bash
 clear
-
+user_answer=""
 
 #objectGenerator=( "Puzzle" "Saw" "Surfboard" "Holly" "AvocadoTree" "Scanner" "Typewriter" "Nightstand" "Mint" "TapeMeasure" )
 
-geographyQuestions=( "Which continent is Egypt located in" "What is the largest ocean on Earth" "What country is south of Canada" "What is the capital of Japan" "Which direction does the Sun rise from" )
-historyQuestions=( "Who was the first President of the United States" "In what year did the U.S. declare independence" "" )
-sportsQuestions=( " How many players are on a soccer team on the feild?" "What sport uses a tall hoop? " " How many points is a touchdown worth?" "What sport is played at wimbeldon? " "In baseball, how many strikes make an out?" )
-triviaQuestions=( "What color do you get by mixing red and blue?" "How many days are in a leap year?" "Which animal is known as “man’s best friend”?" "What do bees make?" "How many letters are in the English alphabet?" )
-  
+
+
+verify_answer(){
+   #use a default value here $1
+   passed_in_answer=$1 
+   case $passed_in_answer in
+      a | A)
+         user_answer=A
+         ;;
+      b | B)
+         user_answer=B
+         ;;
+      c | C)
+         user_answer=C
+         ;;
+      d | D)
+         user_answer=D
+         ;;
+      *) echo "not an available choice"  
+         ;;
+   esac
+}
+
 for_Math(){
    mathQuestions=( 
       "What is 6 * 8" 
@@ -27,12 +45,13 @@ for_Math(){
    mathAnswers=("D" "B" "C" "A" "B")
 
    mathQuestion=0
-   for m in "${mathQuestions[@]}"; do
-      echo "$m"
+   for mQ in "${mathQuestions[@]}"; do
+      echo "$mQ"
       echo "${mathMultipleChoice[mathQuestion]}"
       read -p "What is the answer?: " math_answer
+      verify_answer $math_answer
       answer="${mathAnswers[mathQuestion]}"
-      if [[ $math_answer == $answer ]]; then
+      if [[ $user_answer == $answer ]]; then
          echo ""
          echo " Good Job! you got it correct! "
          sleep 2
@@ -52,10 +71,10 @@ for_Science(){
    	"What gas do humans need to breathe"
    	"What state of matter is ice"
    	"Which animal is a mammal"
-    )
+   )
    scienceMultipleChoice=(
-      "A) Venus B) Earth C) Mercury D) Mars" 
-      "A) Leaves B) Stem C) Roots D) Flower"
+      "A) Venus B) Earth C) Mercury D) Mars" 
+      "A) Leaves B) Stem C) Roots D) Flower"
       "A) Air B) Oxygen C) Nitrogen D) Helium"
       "A) Solid B) Liquid C) Gas D) Plasma"
       "A) Frog B) Snake C) Dolphin D) Eagle"
@@ -63,18 +82,18 @@ for_Science(){
    scienceAnswers=( "C" "B" "B" "A" "B" )
    
    scienceQuestion=0
-   for s in "${scienceQuestions[@]}"; do
-   	   echo "$m"
+   for sQ in "${scienceQuestions[@]}"; do
+   	echo "$sQ"
 	   echo "${scienceMultipleChoice[scienceQuestion]}"
 	   read -p "And you answer is?: " science_answer
 	   answer= "${scienceAnswers[scienceQuestion]}"
 	   if [[ $science_answer = $answer ]]; then
-	   		echo "Good Job punk! you got it correct!"
-			sleep 2
+	   	 echo "Good Job punk! you got it correct!"
+			 sleep 2
 	   else
 	   
-	   		echo  "Aw man. the correct answer was "${scienceAnswers[scienceQuestion]}". Try again next time"
-			sleep 2
+	   	 echo  "Aw man. the correct answer was "${scienceAnswers[scienceQuestion]}". Try again next time"
+			 sleep 2
 	   fi
 	   ((scienceQuestion++))
 	done
@@ -82,27 +101,151 @@ for_Science(){
 
 
 for_Geography(){
-   :
+   geographyQuestions=(
+      "Which continent is Egypt located in" 
+      "What is the largest ocean on Earth" 
+      "What country is north of the United States" 
+      "What is the capital of Japan" 
+      "Which direction does the Sun rise from" 
+   )
+   geographyMultipleChoice=(
+      "A) Europe B) Asia C) Africa D) South America"
+      "A) Atlantic B) Indian C) Arctic D) Pacific"
+      "A) Mexico B) Canada C) Brazil D) Russia"
+      "A) Beijing B) Seoul C) Tokyo D) Bangkok"
+      "A) North B) South C) East D) West"
+   )
+   geographyAnswers=( "C" "D" "B" "C" "C" )
+
+   geographyQuestion=0
+   for gQ in "${geographyQuestions[@]}"; do
+      echo "$gQ"
+      echo "${geographyMultipleChoice[geographyQuestion]}"
+      read -p "And you answer is?: " geo_answer
+      answer= "${geographyAnswers[geographyQuestion]}"
+      if [[ $geo_answer = $answer ]]; then
+            echo "Good Job punk! you got it correct!"
+         sleep 2
+      else
+      
+            echo  "Aw man. the correct answer was "${geographyAnswers[geographyQuestion]}". Try again next time"
+         sleep 2
+      fi
+      ((geographyQuestion++))
+   done
 }
 
 for_History(){
-   :
+
+   historyQuestions=(
+    "Who was the first President of the United States"
+    "In what year did the U.S. declare independence" 
+    "What ship did the Pilgrims sail on?"
+    "Who was known as the “Father of the Constitution”?"
+    "Which civilization built the pyramids?" 
+   )
+   historyMultipleChoice=(
+      "A) Abraham Lincoln B) George Washington C) Thomas Jefferson D) John Adams"
+      "A) 1492 B) 1776 C) 1865 D) 1914"
+      "A) Santa Maria B) Titanic C) Mayflower D) Endeavour"
+      "A) Benjamin Franklin B) James Madison C) John Hancock D) Alexander Hamilton"
+      "A) Romans B) Greeks C) Egyptians D) Mayans"
+   )
+   historyAnswers=( "B" "B" "C" "B" "C" )
+   historyQuestion=0
+   for hQ in "${historyQuestions[@]}"; do
+      echo "$hQ"
+      echo "${historyMultipleChoice[historyQuestion]}"
+      read -p "And you answer is?: " history_answer
+      verify_answer $history_answer
+      echo $user_answer
+      sleep 2
+      answer= "${historyAnswers[historyQuestion]}"
+      if [[ $user_answer = $answer ]]; then
+            echo "Good Job punk! you got it correct!"
+         sleep 2
+      else
+      
+            echo  "Aw man. the correct answer was "${historyAnswers[historyQuestion]}". Try again next time"
+         sleep 2
+      fi
+      ((historyQuestion++))
+   done
 }
 
 for_Sports(){
-   :
+   sportsQuestions=( 
+    " How many players are on a soccer team on the feild?"
+    "What sport uses a tall hoop? "
+    " How many points is a touchdown worth?" 
+    "What sport is played at wimbeldon? "
+    "In baseball, how many strikes make an out?" 
+   )
+   sportsMultipleChoice=(
+      "A) 9 B) 10 C) 11 D) 12"
+      "A) Soccer B) Baseball C) Basketball D) Hockey"
+      "A) 3 B) 5 C) 6 D) 7"
+      "A) Golf B) Tennis C) Soccer D) Cricket"
+      "A) 2 B) 3 C) 4 D) 5"
+   )
+   sportsAnswers=( "D" "C" "C" "B" "B" )
+   sportsQuestion=0
+   for sQ in "${sportsQuestions[@]}"; do
+      echo "$sQ"
+      echo "${sportsMultipleChoice[sportsQuestion]}"
+      read -p "And you answer is?: " sports_answer
+      answer= "${sportsAnswers[sportsQuestion]}"
+      if [[ $sports_answer = $answer ]]; then
+         echo "Good Job punk! you got it correct!"
+         sleep 2
+      else
+         echo  "Aw man. the correct answer was "${sportsAnswers[sportsQuestion]}". Try again next time"
+         sleep 2
+      fi
+      ((sportsQuestion++))
+   done
 }
 
 for_Trivia(){
-   :
+   triviaQuestions=( 
+      "What color do you get by mixing red and blue?" 
+      "How many days are in a leap year?" 
+      "Which animal is known as man’s best friend?"
+      "What do bees make?" 
+      "How many letters are in the English alphabet?" 
+   )
+   triviaMultipleChoice=(
+      "A) Green B) Purple C) Orange D) Brown"
+      "A) 365 B) 366 C) 364 D) 360"
+      "A) Cat B) Horse C) Dog D) Rabbit"
+      "A) Milk B) Honey C) Silk D) Wax"
+      "A) 24 B) 25 C) 26 D) 27"
+   )
+   triviaAnswers=( "B" "B" "C" "B" "C")
+   triviaQuestion=0
+   for tQ in "${triviaQuestions[@]}"; do
+      echo "$tQ"
+      echo "${triviaMultipleChoice[triviaQuestion]}"
+      read -p "And you answer is?: " trivia_answer
+      answer= "${triviaAnswers[triviaQuestion]}"
+      if [[ $trivia_answer = $answer ]]; then
+         echo "Good Job punk! you got it correct!"
+         sleep 2
+      else
+         echo  "Aw man. the correct answer was "${triviaAnswers[triviaQuestion]}". Try again next time"
+         sleep 2
+      fi
+      ((triviaQuestion++))
+   done
 }
+
 
 for_Start(){
   echo -e "
- Welcome to: Are You Smarter Than a 5th Grader?
-    - - - - - - - - - -- - -- - -- - -- - - -- -        
- Want to know how smart you really are? Lets find out! 
-"
+   Welcome to: Are You Smarter Than a 5th Grader?
+   - - - - - - - - - -- - -- - -- - -- - - -- -        
+   Want to know how smart you really are? Lets find out! 
+   "
 }
 
 for_Menu(){
